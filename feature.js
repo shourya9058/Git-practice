@@ -1,168 +1,73 @@
-// // Fetching the data from an API using JAvascript
-
-// // fetch(url) -->SyntaxError
-// // -->fetch() returns a Promise, that means we can use the promise functions on it i.e., then(executed when promise is fulfilled) and catch(executed when promise is not fulfilled)
-
-// // let url = "https://catfact.ninja/fact";
-
-// // fetch(url)
-// // .then((res)=>{
-// //     console.log(res); //sirf header bhi mil jae tbh bhi promkse ko fulfilled consider krta h, zaroori nhi hrr baar data ho hi
-// //     return res.json(); //converts into readble format, yeh bhi promise return krta h
-// // })
-// // .then((data)=>{  //res,json wale promise k fulfil hone p chlega yeh
-// //     console.log(data);
-// //     console.log(data.fact); //ab particular entry/key inside the data bhi print krwa skte h
-// // })
-// // .catch((err)=>{
-// //     console.log("Error -",err);
-// // });
-// // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// // Same Code using async Function:
-
-// // let url = "https://catfact.ninja/fact";
-
-// // async function getFact() {
-// //    try{
-// //     let res = await fetch(url);
-// //     let data = await res.json();
-// //     console.log(data.fact);
-// //    }
-// //    catch(e){
-// //     console.log("Error: ",e);
-// //    }
-
-// //    console.log("Aage ka kuch bhi kaam upr wale promise fail hone p unaffected rahega!");
-// // }
-// // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-// --------------------------------------------------Random Cat Fact Generating code using the above logic-----------------------------------------------------------
+// 🔥 Git & Node.js Practice Notes (Day 1) 🚀
+// 1️⃣ Git Repository Setup
+// ✅ Git repo initialize karna:
 
 
+// git init
+// (Yeh command ek naya Git repo banati hai uss folder ke andar.)
 
-// Old/Lengthy Version:
-// let url = "https://catfact.ninja/fact";
-// function req(){
-//     return fetch(url) //yeh ni likhenge toh pure function ki return value null jaegi aur promise return nhi hoga due to which eventListener bhi nhi chalega
-// .then((res)=>{
-//     console.log(res); 
-//     return res.json(); //yeh sirf then() k andar chl rha h isiliye iske likhe k baad bhi fucntion null return krega agr fetch(url) return nhi krenge
-// })
-// .then((data)=>{  //res,json wale promise k fulfil hone p chlega yeh
-//     console.log(data);
-//     return data.fact; //ab particular entry/key inside the data bhi print krwa skte h
-// })
-// .catch((err)=>{
-//     console.log("Error -",err);
-// });
-// }
-
-// // New/Smart Version:
-// let url = "https://catfact.ninja/fact";
-// function req(){
-//     return getFact();
-//     async function getFact(){
-//         try{
-//             let res = await axios.get(url);
-//            return res.data.fact;
-//         }
-//         catch(e){
-//                 console.log("Error: ",e);
-//                 return "No fact found!"
-//                }
-//     }
-// }
-
-// let buttn = document.getElementById("btn");
-// let text = document.getElementById("text");
-// buttn.addEventListener("click",async ()=>{  //async callback cause we are calling an asynchronous function
-//     let fact = await req();
-//     text.innerText = fact;
-// });
-
-// //---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// ✅ Check karne ke liye ki repo bana ya nahi:
 
 
-// // Same getFact Function using Axios:
-// // let url = "https://catfact.ninja/fact";
-// // async function getFact(){
-// //     try{
-// //         let res = await axios.get(url);
-// //        console.log(res.data.fact);
-// //     }
-// //     catch(e){
-// //             console.log("Error: ",e);
-// //            }
-// // }
-// // --------------------------------------------------Random Dog Images Generating code using the above logic---------------------------------------------------------
+// git status
+// (Ye bataayega ki kaunse files staged ya untracked hain.)
 
-// let url2 = "https://dog.ceo/api/breeds/image/random";
-
-// async function req2() {
-//     try {
-//         let res = await axios.get(url2);
-//         return res.data.message;  // This contains the image URL
-//     } catch (e) {
-//         console.log("Error: ", e);
-//         return "/"; // Default image in case of an error
-//     }
-// }
-
-// let buttn2 = document.getElementById("btn2");
-// let dis = document.getElementsByClassName("dis")[0]; // Select the first element with class "dis"
-
-// buttn2.addEventListener("click", async () => {
-//     let link = await req2(); // Wait for the image URL
-
-//         dis.style.backgroundImage = `url('${link}')`; // Set background image
-// });
-
-// //-------------------------------------------------------------Passing Header in Axios-------------------------------------------------------------------------------
+// 2️⃣ Staging & Committing Changes
+// ✅ File ko staging area me add karna:
 
 
-// let url3 = "https://icanhazdadjoke.com/";
+// git add <file-name>  
+// (Agar saari files add karni ho toh git add . use kar sakte ho.)
 
-// async function getJokes() {
-//     try{
-//         const config = {headers: {Accept: "application/json"}}  //pehle data html code ki format mein aa rha tha isiliye yeh header add kiya ab data readable json format mein aa rha h
-//         let data = await axios.get(url3,config); //header wala element as a second argument yha pass krna hoga
-//         console.log(data.data.joke);
-//     }
-//     catch(e){
-//         console.log("Error - ",e);
-//     }
-// }
+// ✅ Commit karna (final save version create karna):
 
-let newUrl = "http://universities.hipolabs.com/search?name=";
 
-let btn = document.getElementById("country");
+// git commit -m "First commit"
+// (-m ka matlab hai message dena jo bataye commit me kya changes hain.)
 
-btn.addEventListener("click",async () => {
-    let list = document.getElementById("result");
-    list.innerHTML = "";
-    let country = document.querySelector("input").value;
-    let colleges = await getCollege(country);
-    show(colleges);
-})
+// 3️⃣ GitHub se Link & Push
+// ✅ Remote repo add karna:
 
-function show(colleges){
-    let list = document.getElementById("result");
-    for(col of colleges){
-        console.log(col.name);
-        let li = document.createElement("li");
-        li.innerText = col.name;
-        list.appendChild(li);
-    }
 
-}
+// git remote add origin <GitHub-repo-link>
+// (Yeh tumhare local repo ko GitHub se connect karta hai.)
 
-async function getCollege(country){
-    try{
-        let res = await axios.get(newUrl+country);
-        return res.data;
-    }
-    catch(e){
-        console.log("Error: ",e);
-        return [];
-    }
-}
+// ✅ Branch push karna GitHub pe:
+
+
+// git push -u origin main
+// (-u ka matlab hai default upstream set karna, taaki aage sirf git push se kaam ho jaye.)
+
+// 4️⃣ Branching & Merging
+// ✅ Naya branch create aur switch karna:
+
+
+// git checkout -b feature-branch
+// (Branching ka use alagsi kaam karne ke liye hota hai bina main ko affect kiye.)
+
+// ✅ Main branch pe merge karna:
+
+
+// git checkout main  
+// git merge feature-branch
+// (Yeh feature branch ke changes main branch me add kar deta hai.)
+
+// 5️⃣ Git Ignore File
+// ✅ Unwanted files ko ignore karne ke liye .gitignore banayein:
+
+
+// echo "node_modules/" > .gitignore
+// (Agar .gitignore me node_modules/ likh diya, toh wo Git me track nahi hoga.)
+
+// 6️⃣ Git Pull & Fixing Push Errors
+// ✅ Agar push error aaye ("Updates were rejected"), toh pehle pull karo:
+
+
+// git pull origin main --rebase
+// (Yeh remote changes ko merge karke tumhare commits ke upar rakhta hai.)
+
+// ✅ Agar fir bhi error aaye toh force push kar sakte ho (carefully!):
+
+
+// git push -f origin main
+// (Yeh tumhare local commits ko remote pe overwrite kar dega.)
